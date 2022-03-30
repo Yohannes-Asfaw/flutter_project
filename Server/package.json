@@ -1,0 +1,29 @@
+{
+  "name": "geners",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000N\u0000O\u0000D\u0000E\u0000-\u0000j\u0000s\u0000-\u0000A\u0000p\u0000i\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "config": "^3.3.7",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "express-async-errors": "^3.1.1",
+    "fawn": "^2.1.5",
+    "joi": "^17.6.0",
+    "joi-objectid": "^4.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongodb": "^3.7.3",
+    "mongoose": "^6.2.9",
+    "nodemailer": "^6.7.2",
+    "winston": "^3.6.0",
+    "winston-mongodb": "^5.0.5"
+  }
+}
