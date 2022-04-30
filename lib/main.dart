@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/views/companies_list.dart';
+import 'package:mynotes/views/companies_post.dart';
 
 import 'package:mynotes/views/login.dart';
 
