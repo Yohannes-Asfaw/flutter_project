@@ -105,7 +105,7 @@ class _CompaniesPostState extends State<CompaniesPost> {
                                             Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ApplicationForm()),
+                                builder: (context) =>const ApplicationForm( ), settings:  RouteSettings(arguments:postList[index].companyname )),
                           );
                               
                                           },

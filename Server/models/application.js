@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Joi = require('joi')
 const jwt = require('jsonwebtoken')
 const config = require('config')
+const { join } = require('lodash')
 
 
 const applyschema = mongoose.Schema({
@@ -25,6 +26,10 @@ const applyschema = mongoose.Schema({
     department:{
         type:String,
         required:true
+    },
+    company_name:{
+        type:String,
+        required:true
     }
 })
 
@@ -41,7 +46,8 @@ function validateApply(application){
         cgpa:Joi.string().required(),
         userName:Joi.string().required().min(4),
         description:Joi.string().required(),
-        address:Joi.string().required()
+        address:Joi.string().required(),
+        company_name:Joi.string().required()
     })
     return schema.validate(application)
 }

@@ -4,6 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mynotes/repository/user_repo.dart';
+import 'package:mynotes/views/companies_post.dart';
 import '../models/company.dart';
 import '../models/users.dart';
 import '../repository/companies_repo.dart';
@@ -22,6 +23,7 @@ class _ApplicationFormState extends State<ApplicationForm> {
   late final TextEditingController  _department = TextEditingController();
   late final TextEditingController _address = TextEditingController();
   late final TextEditingController _description= TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
@@ -48,6 +50,9 @@ class _ApplicationFormState extends State<ApplicationForm> {
 
   @override
   Widget build(BuildContext context) {
+    final companyname = 
+ModalRoute.of(context)!.settings.arguments as String;
+
     return Scaffold(
         backgroundColor: Colors.teal,
         appBar: AppBar(
@@ -64,7 +69,6 @@ class _ApplicationFormState extends State<ApplicationForm> {
               _name.text = user.fullName;
               _department.text = user.department;
               _address.text = user.address;
-
               return 
               Form(
                   key: _formKey,
@@ -72,7 +76,7 @@ class _ApplicationFormState extends State<ApplicationForm> {
                       padding: const EdgeInsets.fromLTRB(60, 20, 60, 10),
                       child: SingleChildScrollView(
                       child: Column(
-                        children: [
+                        children: [ 
                           Container(
                               margin: const EdgeInsets.fromLTRB(0, 30, 0, 40),
                               child: const Align(
@@ -359,7 +363,9 @@ class _ApplicationFormState extends State<ApplicationForm> {
                                               'department':
                                                   _department.text,
                                               'address': _address.text,
-                                              'description': _description.text
+                                              'description': _description.text,
+                                              'company_name':companyname
+
                                             }),
                                           );
                                           if (response.statusCode == 400) {
