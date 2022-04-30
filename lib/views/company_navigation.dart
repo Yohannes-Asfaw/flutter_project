@@ -33,15 +33,22 @@ class _CompanyNavigationState extends State<CompanyNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[currentIndex],
-      bottomNavigationBar: CurvedNavigationBar(
-          height: 50,
-          backgroundColor: Colors.teal,
-          items: const <Widget>[
-            Icon(Icons.list, size: 20),
-            Icon(Icons.compare_arrows, size: 20),
-          ],
-          onTap: onTabTapped),
+     body: _children[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.green[100],
+        onTap: onTabTapped,
+        items: const [
+          BottomNavigationBarItem(
+            //I want to navigate to a new page Library();
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            //I want to navigate to a new page Store();
+            icon: Icon(Icons.message),
+            label: 'Message',
+          )]),
       floatingActionButton: FloatingActionButton.extended(
         elevation: 4.0,
         icon: const Icon(Icons.add),
@@ -52,7 +59,7 @@ class _CompanyNavigationState extends State<CompanyNavigation> {
             MaterialPageRoute(builder: (context) => const PostForm()),
           );
         },
-      ),
-    );
+      ));
+    
   }
 }

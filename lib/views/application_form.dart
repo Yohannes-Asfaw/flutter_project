@@ -4,10 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mynotes/repository/user_repo.dart';
-import 'package:mynotes/views/companies_post.dart';
-import '../models/company.dart';
 import '../models/users.dart';
-import '../repository/companies_repo.dart';
 
 class ApplicationForm extends StatefulWidget {
   const ApplicationForm({Key? key}) : super(key: key);
