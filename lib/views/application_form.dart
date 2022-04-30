@@ -170,8 +170,6 @@ class _ApplicationFormState extends State<ApplicationForm> {
                                     borderSide:
                                         const BorderSide(color: Colors.white),
                                   ),
-                                  hintText: "Write Decription of your post",
-                                  hintStyle: const TextStyle(color: Colors.white24),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
                                     borderSide: const BorderSide(color: Colors.white),
@@ -184,10 +182,8 @@ class _ApplicationFormState extends State<ApplicationForm> {
                                 ),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'please add a discription';
-                                  } else if (value.trim().length < 15) {
-                                    return 'please write you description in 15 chararcter';
-                                  }
+                                    return 'please add a Address';
+                                  } 
                                   return null;
                                 },
                               )),
@@ -217,8 +213,6 @@ class _ApplicationFormState extends State<ApplicationForm> {
                                     borderSide:
                                         const BorderSide(color: Colors.white),
                                   ),
-                                  hintText: "Write Decription of your post",
-                                  hintStyle: const TextStyle(color: Colors.white24),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
                                     borderSide: const BorderSide(color: Colors.white),
@@ -231,10 +225,8 @@ class _ApplicationFormState extends State<ApplicationForm> {
                                 ),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'please add a discription';
-                                  } else if (value.trim().length < 15) {
-                                    return 'please write you description in 15 chararcter';
-                                  }
+                                    return 'cgpa is required';
+                                  } 
                                   return null;
                                 },
                               )),
@@ -311,8 +303,7 @@ class _ApplicationFormState extends State<ApplicationForm> {
                                     borderSide:
                                         const BorderSide(color: Colors.white),
                                   ),
-                                  hintText: "Write Decription of your post",
-                                  hintStyle: const TextStyle(color: Colors.white24),
+                                 
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
                                     borderSide: const BorderSide(color: Colors.white),
@@ -325,10 +316,9 @@ class _ApplicationFormState extends State<ApplicationForm> {
                                 ),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'please add a discription';
-                                  } else if (value.trim().length < 15) {
-                                    return 'please write you description in 15 chararcter';
-                                  }
+                                    return 'please add a department';
+                                  } 
+                                  
                                   return null;
                                 },
                               )),
