@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 
 import 'package:mynotes/views/login.dart';
 
-import '../storage/localstorage.dart';
 
 void main() {
   runApp(
@@ -381,6 +380,7 @@ class _CompanySignupViewstatefullState
                               headers: <String, String>{
                                 'Content-Type':
                                     'application/json; charset=UTF-8',
+                                    
                               },
                               body: jsonEncode(<String, String>{
                                 'password': password,

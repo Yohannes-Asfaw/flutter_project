@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:mynotes/models/users.dart';
 import 'package:mynotes/repository/companies_repo.dart';
-import 'package:mynotes/repository/user_repo.dart';
+
 
 import '../models/company.dart';
 
@@ -80,10 +77,10 @@ class _CompanyProfileState extends State<CompanyProfile> {
                       ),
                       Text(
                         company.companyname,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 25, fontStyle: FontStyle.italic),
                       ),
-                      Container(
+                      SizedBox(
                           width: 330,
                           child: Column(children: [
                             Container(

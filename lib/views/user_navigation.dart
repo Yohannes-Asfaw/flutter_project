@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mynotes/views/companies_post.dart';
 import 'package:mynotes/views/user_profile.dart';
 
-import 'companies_list.dart';
 import 'Usermessage.dart';
 
 class UserNavigation extends StatefulWidget {

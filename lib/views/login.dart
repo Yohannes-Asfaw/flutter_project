@@ -1,4 +1,3 @@
-// ignore_for_file: unnecessary_this
 
 import 'dart:convert';
 
@@ -6,15 +5,11 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mynotes/storage/localstorage.dart';
-import 'package:mynotes/views/companies_list.dart';
 import 'package:mynotes/views/company_navigation.dart';
-import 'package:mynotes/views/company_profile.dart';
 import 'package:mynotes/views/company_registration.dart';
 import 'package:mynotes/views/user_navigation.dart';
-import 'package:mynotes/views/user_profile.dart';
 import 'package:mynotes/views/user_registration.dart';
 
-import 'home.dart';
 
 void main() {
   runApp(
@@ -195,7 +190,7 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                               color: Colors.white,
                             ),
                             suffixIcon: IconButton(
-                                color: this._showPassword
+                                color: _showPassword
                                     ? Colors.white
                                     : Colors.grey,
                                 icon: Icon(
@@ -413,7 +408,7 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                               color: Colors.white,
                             ),
                             suffixIcon: IconButton(
-                                color: this._showPassword
+                                color: _showPassword
                                     ? Colors.white
                                     : Colors.grey,
                                 icon: Icon(

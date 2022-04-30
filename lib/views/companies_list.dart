@@ -140,7 +140,7 @@ class _CompanyListState extends State<CompanyList> {
                                                       textAlign:
                                                           TextAlign.center,
                                                     ),
-                                                    content: Container(
+                                                    content: SizedBox(
                                                       width: 400,
                                                       child: Form(
                                                         child: Column(
@@ -196,7 +196,7 @@ class _CompanyListState extends State<CompanyList> {
                                                     ),
                                                     actions: [
                                                       ElevatedButton(
-                                                          child: Text("Submit"),
+                                                          child: const Text("Submit"),
                                                           onPressed: () {
                                                             // your code
                                                           })

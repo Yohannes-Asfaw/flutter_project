@@ -5,12 +5,12 @@ const error = require('../middelware/error')
 const getData = require('../routes/getData')
 const apply = require('../routes/applyform')
 const post = require('../routes/post')
-const cors = require("cors");
+const cors = require("cors")
 
 
 module.exports=function(app){
     app.use(express.json())
-    app.use(cors());
+    app.use(cors())
     app.use('/reg',regestration)
     app.use('/login',login)
     app.use('/get',getData)

@@ -114,14 +114,14 @@ class _PostFormState extends State<PostForm> {
                                         const BorderSide(color: Colors.white),
                                   ),
                                   hintText: "Write subject of post message",
-                                  hintStyle: TextStyle(color: Colors.white24),
+                                  hintStyle: const TextStyle(color: Colors.white24),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
+                                    borderSide: const BorderSide(color: Colors.white),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide:
-                                        BorderSide(color: Colors.black45),
+                                        const BorderSide(color: Colors.black45),
                                     borderRadius: BorderRadius.circular(23),
                                   ),
                                   // border: OutlineInputBorder(),
@@ -162,13 +162,13 @@ class _PostFormState extends State<PostForm> {
                                         const BorderSide(color: Colors.white),
                                   ),
                                   hintText: "Write Decription of your post",
-                                  hintStyle: TextStyle(color: Colors.white24),
+                                  hintStyle: const TextStyle(color: Colors.white24),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide(color: Colors.white),
+                                    borderSide: const BorderSide(color: Colors.white),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black),
+                                    borderSide: const BorderSide(color: Colors.black),
                                     borderRadius: BorderRadius.circular(23),
                                   ),
                                   // border: OutlineInputBorder(),

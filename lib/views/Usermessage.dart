@@ -10,8 +10,6 @@ class UserMessage extends StatefulWidget {
 class _UserMessageState extends State<UserMessage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
+    return Container();
   }
 }

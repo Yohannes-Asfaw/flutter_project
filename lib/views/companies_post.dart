@@ -33,15 +33,13 @@ class _CompaniesPostState extends State<CompaniesPost> {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.all(10),
-                          itemCount: postList.length,
-                          itemBuilder: (context, index) {
-                            return Container(child: Text(postList[index].companyname),);
-                          })
-    );
+    return ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.all(10),
+                        itemCount: postList.length,
+                        itemBuilder: (context, index) {
+                          return Text(postList[index].companyname);
+                        });
   }
 }

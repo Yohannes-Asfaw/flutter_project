@@ -1,11 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:mynotes/models/users.dart';
-import 'package:mynotes/repository/companies_repo.dart';
 import 'package:mynotes/repository/user_repo.dart';
 
-import '../models/company.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({Key? key}) : super(key: key);
