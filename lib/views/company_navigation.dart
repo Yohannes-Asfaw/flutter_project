@@ -28,7 +28,7 @@ class _CompanyNavigationState extends State<CompanyNavigation> {
 
   final List<Widget> _children = [
     const CompanyProfile(),
-    const CompanyMessage(),
+    const Companymessage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -60,6 +60,5 @@ class _CompanyNavigationState extends State<CompanyNavigation> {
           );
         },
       ));
-    
   }
 }

@@ -1,24 +1,29 @@
 class Application {
   String userName;
   String address;
-  int cgpa;
+  String cgpa;
   String description;
   String department;
+  String companyname;
 
   Application.fromJson(Map json)
       : userName = json['userName'],
-        address = json['Address'],
+        address = json['address'],
         cgpa = json['cgpa'],
+        description = json['description'],
         department=json['department'],
-        description = json['description'];
+        companyname=json['company_name'];
+
 
   Map toJson() {
     return {
-      'department':department,
+      
       'userName': userName,
+      'address': address,
       'cgpa': cgpa,
-      'Address': address,
-      'description': description
+      'description': description,
+      'department':department,
+      'company_name':companyname
     };
   }
 }

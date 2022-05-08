@@ -2,6 +2,8 @@ const express = require('express')
 const {Company} = require('../models/company')
 const {User}=require('../models/users')
 const {Post}=require('../models/post_form')
+const {Application}=require('../models/application')
+
 const router = express.Router()
 
 
@@ -34,6 +36,12 @@ router.get('/posts',async (req,res)=>{
 
    res.send(post)
     
+
+})
+router.get('/application/:company_name',async (req,res)=>{
+    const company_name = req.params.company_name
+    let application = await Application.find({company_name:company_name})
+   res.send(application)
 
 })
 

@@ -37,7 +37,7 @@ const companyschema = mongoose.Schema({
 })
 
 companyschema.methods.generateregtoken =function(){
-const token = jwt.sign({_id:this._id,role:this.role},config.get('jwtwebtoken'))
+const token = jwt.sign({_id:this._id,role:this.role,company_name:this.company_name},config.get('jwtwebtoken'))
 return token
 }
 
@@ -51,6 +51,7 @@ function validateCompany(company){
         Company_website:Joi.string(),
         dedicated_field:Joi.string().required(),
         Address:Joi.string().required()
+        
     })
     return schema.validate(company)
 }

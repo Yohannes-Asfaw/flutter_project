@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:http/http.dart' as http;
+import 'package:mynotes/models/applicationform.dart';
 import 'package:mynotes/models/company.dart';
 import 'package:mynotes/storage/localstorage.dart';
 
@@ -23,4 +24,13 @@ class CompanyApi {
       throw Exception('Failed to load album');
     }
   }
+  static Future getapplication() async {
+    var token = await TokenStorage.getCompanyToken('company_token');
+    Map<String, dynamic> payload =  Jwt.parseJwt(token.toString());
+    String companyname =  payload.values.toList()[2];
+    print(companyname);
+    return http.get(Uri.parse('http://127.0.0.1:3000/get/application/$companyname'));
+  }
+
+  
 }

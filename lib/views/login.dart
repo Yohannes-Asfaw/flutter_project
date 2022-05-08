@@ -184,7 +184,6 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                               color: Colors.red,
                               fontWeight: FontWeight.w700,
                             ),
-
                             prefixIcon: const Icon(
                               Icons.lock,
                               color: Colors.white,
