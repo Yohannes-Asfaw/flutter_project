@@ -33,10 +33,10 @@ const applyschema = mongoose.Schema({
     }
 })
 
-applyschema.methods.generateregtoken =function(){
-const token = jwt.sign({_id:this._id},config.get('jwtwebtoken'))
-return token
-}
+// applyschema.methods.generateregtoken =function(){
+// const token = jwt.sign({_id:this._id},config.get('jwtwebtoken'))
+// return token
+// }
 
 const Application = mongoose.model('Application',applyschema)
 

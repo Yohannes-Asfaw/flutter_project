@@ -12,7 +12,7 @@ router.post('/',async (req,res)=>{
         
 
     }
-    let apply = await Application.findOne({company_name:req.body.userName})
+    let apply = await Application.findOne({userName:req.body.userName})
     if(apply){
         return res.status(409).send('You have already Applied')
     }
@@ -27,7 +27,7 @@ router.post('/',async (req,res)=>{
 
     
     await apply.save()
-    const token = apply.generateregtoken()
+    // const token = apply.generateregtoken()
     res.send('applied successfully')
     
 

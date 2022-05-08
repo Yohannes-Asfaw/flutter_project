@@ -385,6 +385,18 @@ ModalRoute.of(context)!.settings.arguments as String;
                                               btnOkOnPress: () {},
                                             ).show();
                                           }
+                                          else if (response.statusCode ==
+                                              409) {
+                                            AwesomeDialog(
+                                              context: context,
+                                              dialogType: DialogType.ERROR,
+                                              animType: AnimType.TOPSLIDE,
+                                              title: 'Error code 409',
+                                              desc: "You have already Applied",
+                                              btnOkOnPress: () {},
+                                            ).show();
+                                          }
+                                          
                                         }
                                       })))
                         ],
@@ -392,7 +404,6 @@ ModalRoute.of(context)!.settings.arguments as String;
             } else if (snapshot.hasError) {
               return Text('${snapshot.error}');
             }
-
             return const CircularProgressIndicator();
           },
         ));
