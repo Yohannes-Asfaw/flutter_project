@@ -47,7 +47,7 @@ class _ApplicationFormState extends State<ApplicationForm> {
 
   @override
   Widget build(BuildContext context) {
-    final companyname = 
+    final subject = 
 ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
@@ -361,7 +361,7 @@ ModalRoute.of(context)!.settings.arguments as String;
                                                   _department.text,
                                               'address': _address.text,
                                               'description': _description.text,
-                                              'company_name':companyname
+                                              'Subject':subject
 
                                             }),
                                           );

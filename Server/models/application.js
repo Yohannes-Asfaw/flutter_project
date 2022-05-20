@@ -27,7 +27,7 @@ const applyschema = mongoose.Schema({
         type:String,
         required:true
     },
-    company_name:{
+    Subject:{
         type:String,
         required:true
     }
@@ -47,7 +47,7 @@ function validateApply(application){
         userName:Joi.string().required().min(4),
         description:Joi.string().required(),
         address:Joi.string().required(),
-        company_name:Joi.string().required()
+        Subject:Joi.string().required()
     })
     return schema.validate(application)
 }

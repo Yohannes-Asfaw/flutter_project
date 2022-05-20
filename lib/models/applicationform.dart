@@ -4,7 +4,7 @@ class Application {
   String cgpa;
   String description;
   String department;
-  String companyname;
+  String Subject;
 
   Application.fromJson(Map json)
       : userName = json['userName'],
@@ -12,7 +12,7 @@ class Application {
         cgpa = json['cgpa'],
         description = json['description'],
         department=json['department'],
-        companyname=json['company_name'];
+        Subject=json['Subject'];
 
 
   Map toJson() {
@@ -23,7 +23,7 @@ class Application {
       'cgpa': cgpa,
       'description': description,
       'department':department,
-      'company_name':companyname
+      'Subject':Subject
     };
   }
 }
