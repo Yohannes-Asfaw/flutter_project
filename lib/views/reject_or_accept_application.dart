@@ -10,8 +10,14 @@ class ApplicationEvaluation extends StatefulWidget {
 class _ApplicationEvaluationState extends State<ApplicationEvaluation> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("its working"),
-    );
+    return MaterialApp(
+        title: "Application_Evaluation",
+        
+        home: Scaffold(
+            appBar: AppBar(title: const Text("Application Evaluation"),
+             toolbarHeight: 50,
+          backgroundColor: Colors.teal,
+          elevation: 10,),  
+            body: Container()));
   }
 }
