@@ -23,6 +23,7 @@ router.post('/',async (req,res)=>{
         description:req.body.description,
         address:req.body.address,
         Subject:req.body.Subject,
+        Seen:req.body.Seen,
     })
 
     

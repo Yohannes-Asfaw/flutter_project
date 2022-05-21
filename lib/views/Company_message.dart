@@ -63,12 +63,10 @@ class _CompanymessageState extends State<Companymessage> {
           onTap: () {
             Navigator.push(
               context,
-               MaterialPageRoute(
-                builder: (context) {
-                  return const ApplicationEvaluation();
-                },
-              ),
-            );
+                MaterialPageRoute(
+                                builder: (context) =>const ApplicationEvaluation( ), settings:  RouteSettings(arguments:characterList[index] )),
+                          );
+            
           },
                             child: Card(
                               

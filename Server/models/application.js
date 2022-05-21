@@ -29,7 +29,12 @@ const applyschema = mongoose.Schema({
     },
     Subject:{
         type:String,
-        required:true
+        required:true,
+        unique: true
+    },
+    Seen:{
+        type:String,
+        default:"none"
     }
 })
 
@@ -47,7 +52,8 @@ function validateApply(application){
         userName:Joi.string().required().min(4),
         description:Joi.string().required(),
         address:Joi.string().required(),
-        Subject:Joi.string().required()
+        Subject:Joi.string().required(),
+        Seen:Joi.string()
     })
     return schema.validate(application)
 }

@@ -6,6 +6,7 @@ const getData = require('../routes/getData')
 const apply = require('../routes/applyform')
 const post = require('../routes/post')
 const cors = require("cors")
+const update=require('../routes/update')
 
 
 module.exports=function(app){
@@ -14,6 +15,7 @@ module.exports=function(app){
     app.use('/reg',regestration)
     app.use('/login',login)
     app.use('/get',getData)
+    app.use('/put',update)
     app.use('/apply',apply)
     app.use('/post',post)
     app.use(error)
