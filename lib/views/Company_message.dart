@@ -30,7 +30,6 @@ class _CompanymessageState extends State<Companymessage> {
   @override
   void initState() {
     getCompaniesfromApi();
-
     super.initState();
   }
 
