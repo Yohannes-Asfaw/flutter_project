@@ -23,6 +23,7 @@
     "mongodb": "^3.7.3",
     "mongoose": "^6.2.9",
     "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.16",
     "winston": "^3.6.0",
     "winston-mongodb": "^5.0.5"
   }

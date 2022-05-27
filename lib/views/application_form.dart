@@ -3,8 +3,11 @@ import 'dart:convert';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:jwt_decode/jwt_decode.dart';
+import 'package:mynotes/models/companies_post.dart';
 import 'package:mynotes/repository/user_repo.dart';
 import '../models/users.dart';
+import '../storage/localstorage.dart';
 
 class ApplicationForm extends StatefulWidget {
   const ApplicationForm({Key? key}) : super(key: key);
@@ -22,6 +25,11 @@ class _ApplicationFormState extends State<ApplicationForm> {
   late final TextEditingController _description= TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+    getid() async {
+    var token = await TokenStorage.getUserToken('user_token');
+    Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
+    var id = payload.values.toList()[0];
+    return id.toString();}
   @override
   void initState() {
     
@@ -47,8 +55,9 @@ class _ApplicationFormState extends State<ApplicationForm> {
 
   @override
   Widget build(BuildContext context) {
-    final subject = 
-ModalRoute.of(context)!.settings.arguments as String;
+
+    final post = 
+ModalRoute.of(context)!.settings.arguments as Post ;
 
     return Scaffold(
         backgroundColor: Colors.teal,
@@ -344,6 +353,7 @@ ModalRoute.of(context)!.settings.arguments as String;
                                             color: Colors.white, fontSize: 15),
                                       ),
                                       onPressed: () async {
+                                        var id1= await getid();
 
                                         if (_formKey.currentState!.validate()) {
                                           final response = await http.post(
@@ -354,14 +364,12 @@ ModalRoute.of(context)!.settings.arguments as String;
                                                   'application/json; charset=UTF-8',
                                             },
                                             body: jsonEncode(<String, String>{
-                                              'userName': _name.text,
+                                              'user':id1,
                                               'cgpa':
                                               _cgpa.text,
-                                              'department':
-                                                  _department.text,
-                                              'address': _address.text,
                                               'description': _description.text,
-                                              'Subject':subject
+                                              'Subject':post.subject,
+                                              'company_name':post.company.companyname
 
                                             }),
                                           );

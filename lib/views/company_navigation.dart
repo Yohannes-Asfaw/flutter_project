@@ -2,6 +2,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mynotes/views/Company_message.dart';
+import 'package:mynotes/views/company_post.dart';
 import 'package:mynotes/views/company_profile.dart';
 import 'package:mynotes/views/postform.dart';
 
@@ -27,8 +28,10 @@ class _CompanyNavigationState extends State<CompanyNavigation> {
   }
 
   final List<Widget> _children = [
+    const SingleCompaniesPost(),
     const CompanyProfile(),
     const Companymessage(),
+    
   ];
   @override
   Widget build(BuildContext context) {
@@ -40,15 +43,21 @@ class _CompanyNavigationState extends State<CompanyNavigation> {
         onTap: onTabTapped,
         items: const [
           BottomNavigationBarItem(
+            //I want to navigate to a new page Store();
+            icon: Icon(Icons.auto_awesome_mosaic_outlined),
+            label: 'Postes',
+          ),
+          BottomNavigationBarItem(
             //I want to navigate to a new page Library();
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Profile',
           ),
           BottomNavigationBarItem(
             //I want to navigate to a new page Store();
             icon: Icon(Icons.message),
             label: 'Message',
-          )]),
+          ),]),
+          
       floatingActionButton: FloatingActionButton.extended(
         elevation: 4.0,
         icon: const Icon(Icons.add),

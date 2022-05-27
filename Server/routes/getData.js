@@ -32,18 +32,34 @@ router.get('/company/:id',async (req,res)=>{
 
 })
 router.get('/posts',async (req,res)=>{
-    const post = await Post.find()
+    const post = await Post.find().populate('company')
 
    res.send(post)
     
 
 })
+router.get('/posts/:company_name',async (req,res)=>{
+    const company_name=req.params.company_name
+    const post = await Post.find({company_name:company_name}).populate('company');
+
+   res.send(post)
+    
+
+})
+
 router.get('/application/:company_name',async (req,res)=>{
     const company_name = req.params.company_name
-    let application = await Application.find({company_name:company_name})
+    let application = await Application.find({company_name:company_name}).populate('user')
    res.send(application)
 
 })
+router.get('/applications/:id',async (req,res)=>{
+    const id = req.params.id
+    let application = await Application.find({user:id}).or([{Seen:"Accepted"},{Seen:"Rejected"}]).populate('user')
+   res.send(application)
+
+})
+
 
 
 module.exports=router

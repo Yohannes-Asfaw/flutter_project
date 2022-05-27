@@ -5,24 +5,9 @@ const config = require('config')
 
 
 const Postformschema = mongoose.Schema({
-    company_name:{
-        type:String,
-        required:true,
-        minlength:3,
-    },
-    
-    Company_website:{
-        type:String,
-        
-    },
-    Address:{
-        type:String,
-        required:true
-
-    },
-    dedicated_field:{
-        type:String,
-        required:true
+    company:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Company"
     },
     subject:{
         type:String,
@@ -46,11 +31,7 @@ const Post = mongoose.model('Post',Postformschema)
 
 function validatePost(post){
     const schema = Joi.object({
-        
-        company_name:Joi.string().min(3).required(),
-        Company_website:Joi.string(),
-        dedicated_field:Joi.string().required(),
-        Address:Joi.string().required(),
+        company:Joi.required(),
         subject:Joi.string().required().min(4),
         description:Joi.string().required().min(15)
 

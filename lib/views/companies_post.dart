@@ -66,12 +66,12 @@ class _CompaniesPostState extends State<CompaniesPost> {
                                         ),
                                         Column(children: [
                                           Text(
-                                            postList[index].companywebsite,
+                                            postList[index].description,
                                             style: const TextStyle(
                                                 color: Colors.amber,
                                                 fontSize: 20),
                                           ),
-                                          Text(postList[index].address),
+                                          Text(postList[index].company.companyname),
                                         ])
                                       ],
                                     ),
@@ -90,7 +90,7 @@ class _CompaniesPostState extends State<CompaniesPost> {
                                         padding: const EdgeInsets.all(5.0),
                                         alignment: Alignment.centerLeft,
                                         child: Text(postList[index]
-                                            .companywebsite),
+                                            .subject),
                                       )
                                     ]),
                                     ButtonBar(
@@ -105,7 +105,7 @@ class _CompaniesPostState extends State<CompaniesPost> {
                                             Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>const ApplicationForm( ), settings:  RouteSettings(arguments:postList[index].subject )),
+                                builder: (context) =>const ApplicationForm( ), settings:  RouteSettings(arguments:postList[index] )),
                           );
                               
                                           },

@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:jwt_decode/jwt_decode.dart';
 import '../models/company.dart';
 import '../repository/companies_repo.dart';
+import '../storage/localstorage.dart';
 
 class PostForm extends StatefulWidget {
   const PostForm({Key? key}) : super(key: key);
@@ -22,6 +24,12 @@ class _PostFormState extends State<PostForm> {
   late final TextEditingController _description;
   late final TextEditingController _subject;
   final _formKey = GlobalKey<FormState>();
+  getcompanyid() async{
+    var token = await TokenStorage.getCompanyToken('company_token');
+    Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
+    var id = payload.values.toList()[0];
+    return id;
+  }
   @override
   void initState() {
     _description = TextEditingController();
@@ -207,6 +215,7 @@ class _PostFormState extends State<PostForm> {
                                         final description = _description.text;
 
                                         if (_formKey.currentState!.validate()) {
+                                          var id = await getcompanyid();
                                           final response = await http.post(
                                             Uri.parse(
                                                 'http://127.0.0.1:3000/post'),
@@ -215,12 +224,7 @@ class _PostFormState extends State<PostForm> {
                                                   'application/json; charset=UTF-8',
                                             },
                                             body: jsonEncode(<String, String>{
-                                              'company_name': _companyname.text,
-                                              'Company_website':
-                                                  _companywebsite.text,
-                                              'dedicated_field':
-                                                  _dedicatedfield.text,
-                                              'Address': _address.text,
+                                              'company':id,
                                               'subject': subject,
                                               'description': description
                                             }),

@@ -24,12 +24,14 @@ class CompanyApi {
       throw Exception('Failed to load album');
     }
   }
+  
   static Future getapplication() async {
     var token = await TokenStorage.getCompanyToken('company_token');
     Map<String, dynamic> payload =  Jwt.parseJwt(token.toString());
     String companyname =  payload.values.toList()[2];
     return http.get(Uri.parse('http://127.0.0.1:3000/get/application/$companyname'));
   }
+  
 
   
 }

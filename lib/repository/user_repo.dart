@@ -20,4 +20,10 @@ class UserApi {
       throw Exception('Failed to load album');
     }
   }
+   static Future getmessage() async {
+    var token = await TokenStorage.getUserToken('user_token');
+    Map<String, dynamic> payload =  Jwt.parseJwt(token.toString());
+    String id =  payload.values.toList()[0];
+    return http.get(Uri.parse('http://127.0.0.1:3000/get/applications/$id'));
+  }
 }

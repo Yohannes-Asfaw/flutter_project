@@ -12,11 +12,7 @@ router.post('/',async (req,res)=>{
     
     
     const post = new Post({
-         password:req.body.password,
-        company_name:req.body.company_name,
-        Company_website:req.body.Company_website,
-        dedicated_field:req.body.dedicated_field,
-        Address:req.body.Address,
+        company:req.body.company,
         subject:req.body.subject,
         description:req.body.description
 

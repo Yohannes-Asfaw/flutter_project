@@ -1,29 +1,21 @@
+import 'company.dart';
+
 class Post {
-  String companyname;
-  String companywebsite;
-  String address;
-  String dedicatedfield;
+  Company company;
   String subject;
   String description;
 
   Post.fromJson(Map json)
-      : companyname = json['company_name'],
-        companywebsite = json['Company_website'],
-        address = json['Address'],
-        dedicatedfield = json['dedicated_field'],
+      : company=Company.fromJson(json['company']),
         subject=json['subject'],
         description=json['description'];
 
 
   Map toJson() {
     return {
-      'company_name': companyname,
-      'Company_website': companywebsite,
-      'dedicated_field': dedicatedfield,
-      'Address': address,
+      'company':company.toJson(),
       'subject':subject,
-      'description':description
-      
+      'description':description 
     };
   }
 }

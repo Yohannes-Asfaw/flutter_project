@@ -3,17 +3,14 @@ const Joi = require('joi')
 const jwt = require('jsonwebtoken')
 const config = require('config')
 const { join } = require('lodash')
+const {User} = require('../models/users')
+
 
 
 const applyschema = mongoose.Schema({
-    userName:{
-        type:String,
-        required:true,
-        minlength:4,
-    },
-    address:{
-        type:String,
-        required:true,
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
     },
     cgpa:{
         type:String   
@@ -23,10 +20,7 @@ const applyschema = mongoose.Schema({
         required:true
 
     },
-    department:{
-        type:String,
-        required:true
-    },
+
     Subject:{
         type:String,
         required:true,
@@ -35,7 +29,11 @@ const applyschema = mongoose.Schema({
     Seen:{
         type:String,
         default:"none"
-    }
+    },
+    company_name:{
+        type:String,
+        required:true
+    },
 })
 
 // applyschema.methods.generateregtoken =function(){
@@ -47,13 +45,13 @@ const Application = mongoose.model('Application',applyschema)
 
 function validateApply(application){
     const schema = Joi.object({
-        department:Joi.string().required(),
+        user:Joi.required(),
         cgpa:Joi.string().required(),
-        userName:Joi.string().required().min(4),
         description:Joi.string().required(),
-        address:Joi.string().required(),
         Subject:Joi.string().required(),
-        Seen:Joi.string()
+        Seen:Joi.string(),
+        company_name:Joi.string().required()
+
     })
     return schema.validate(application)
 }

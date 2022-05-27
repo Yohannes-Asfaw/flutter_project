@@ -1,29 +1,29 @@
+import 'package:mynotes/models/users.dart';
+
 class Application {
-  String userName;
-  String address;
+  User user;
   String cgpa;
   String description;
-  String department;
   String Subject;
+  String company_name;
 
   Application.fromJson(Map json)
-      : userName = json['userName'],
-        address = json['address'],
+      : user = User.fromJson(json['user']),
         cgpa = json['cgpa'],
         description = json['description'],
-        department=json['department'],
-        Subject=json['Subject'];
+        Subject=json['Subject'],
+    company_name=json['company_name'];
+      
 
 
   Map toJson() {
     return {
       
-      'userName': userName,
-      'address': address,
+      'user': user.toJson(),
       'cgpa': cgpa,
       'description': description,
-      'department':department,
-      'Subject':Subject
+      'Subject':Subject,
+      'company_name':company_name
     };
   }
 }

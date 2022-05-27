@@ -87,7 +87,7 @@ class _CompanymessageState extends State<Companymessage> {
                                       Container(
                                         padding: const EdgeInsets.all(5.0),
                                         alignment: Alignment.centerLeft,
-                                        child: Text("From : ${characterList[index].userName}"),
+                                        child: Text("From : ${characterList[index].user.fullName}"),
                                       )
                                     ]),
                                   ],
