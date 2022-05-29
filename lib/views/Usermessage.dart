@@ -35,6 +35,12 @@ class _UserMessageState extends State<UserMessage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+          title: const Text("Notification"),
+          toolbarHeight: 50,
+          backgroundColor: Colors.teal,
+          elevation: 10,
+        ),
         body: GestureDetector(
             onTap: () {
               FocusScopeNode currentFocus = FocusScope.of(context);
@@ -44,11 +50,6 @@ class _UserMessageState extends State<UserMessage> {
               }
             },
             child: Column(children: [
-              const Text(
-                'InternSuit-Home',
-                textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 15),
-              ),
               Flexible(
                   child: ListView.builder(
                       scrollDirection: Axis.vertical,
@@ -58,28 +59,54 @@ class _UserMessageState extends State<UserMessage> {
                       itemBuilder: (context, index) {
                         return  
                          Card(
+                           elevation: 5,
+                                shadowColor: Colors.black,
+                                borderOnForeground: true,
+                                margin: const EdgeInsets.only(top: 10),
                           
-                            margin: const EdgeInsets.only(top: 10),
                             child: Column(
-                              children: [
-                                const Divider(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(10.0),
+                                    alignment: Alignment.centerLeft,
+                                    child: const Text("Company response",style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'DancingScript',
+                              color: Colors.teal),),
+                                  ),
+                                  const Divider(
                                     indent: 5,
                                     endIndent: 5,
                                     thickness: 0.5,
                                     color: Colors.black),
-                                Column(children: [
                                   Container(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: const EdgeInsets.all(5.0),
                                     alignment: Alignment.centerLeft,
-                                    child: const Text("Company response"),
+                                    child: Text("From : ${characterList[index].company_name} company",style:const TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'DancingScript',
+                              color: Colors.teal),),
                                   ),
                                   Container(
                                     padding: const EdgeInsets.all(5.0),
                                     alignment: Alignment.centerLeft,
-                                    child: Text("From : ${characterList[index].company_name}"),
-                                  )
-                                ]),
-                              ],
+                                    child: Text("Dear : ${characterList[index].user.userName} you Application was to our company ${characterList[index].Seen}",style:const TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'DancingScript',
+                              color: Colors.teal),),
+                                  ),
+                              if(characterList[index].Seen=="Accepted")
+                                Container(
+                                    padding: const EdgeInsets.all(5.0),
+                                    alignment: Alignment.centerLeft,
+                                    child: const Text("come to our office or contact us via email",style:TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'DancingScript',
+                              color: Colors.teal),),
+                                  ),
+
+                                ],
+                              
                             ));
                       }))
             ])));

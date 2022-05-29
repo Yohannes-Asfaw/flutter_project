@@ -35,7 +35,14 @@ class _CompaniesPostState extends State<CompaniesPost> {
   }
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Postes"),
+          toolbarHeight: 50,
+          backgroundColor: Colors.teal,
+          elevation: 10,
+        ),
+    body :ListView.builder(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         padding: const EdgeInsets.all(10),
@@ -43,6 +50,10 @@ class _CompaniesPostState extends State<CompaniesPost> {
                         itemBuilder: (context, index) {
                           // Text(postList[index].companyname);
                           return Card(
+                                // color: Colors.lime,
+                                elevation: 5,
+                                shadowColor: Colors.teal,
+                                borderOnForeground: true,
                                 margin: const EdgeInsets.only(top: 10),
                                 child: Column(
                                   children: [
@@ -66,37 +77,68 @@ class _CompaniesPostState extends State<CompaniesPost> {
                                         ),
                                         Column(children: [
                                           Text(
-                                            postList[index].description,
-                                            style: const TextStyle(
-                                                color: Colors.amber,
-                                                fontSize: 20),
+                                            postList[index].company.companyname,
+                                            style:const TextStyle(
+                              fontSize: 30,
+                              fontFamily: 'DancingScript',
+                              color: Colors.teal),
                                           ),
-                                          Text(postList[index].company.companyname),
+                                          Text(" our web-site ----> ${postList[index].company.companywebsite}",style:const TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'DancingScript',
+                              color: Colors.teal),),
                                         ])
                                       ],
                                     ),
                                     const Divider(
-                                        indent: 5,
-                                        endIndent: 5,
-                                        thickness: 0.5,
+                                        indent: 0,
+                                        endIndent: 0,
+                                        thickness: 0.7,
                                         color: Colors.black),
                                     Column(children: [
                                       Container(
                                         padding: const EdgeInsets.all(10.0),
                                         alignment: Alignment.centerLeft,
-                                        child: const Text("company website"),
+                                        child: Text(" A  ${postList[index].company.dedicatedfield} Company",style:const TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'DancingScript',
+                              color: Colors.teal),)
+                                      ),
+                                      const Divider(
+                                        indent: 0,
+                                        endIndent: 200,
+                                        thickness: 0.7,
+                                        color: Colors.black),
+                                      Container(
+                                        padding: const EdgeInsets.all(10),
+                                        alignment: Alignment.center,
+                                        child: Text("Info :  ${postList[index]
+                                            .subject}",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600),),
                                       ),
                                       Container(
-                                        padding: const EdgeInsets.all(5.0),
+                                        padding: const EdgeInsets.all(10),
                                         alignment: Alignment.centerLeft,
-                                        child: Text(postList[index]
-                                            .subject),
-                                      )
-                                    ]),
+                                        child: Text("  ${postList[index]
+                                            .description}",style: const TextStyle(fontSize: 14,fontStyle:FontStyle.italic),),
+                                      ),
+                                      const Divider(
+                                        indent: 0,
+                                        endIndent: 0,
+                                        thickness: 0.7,
+                                        color: Colors.black),
+                                        Container(
+                                        padding: const EdgeInsets.all(10),
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(" If you need Our Address  @${postList[index]
+                                            .company.address}",style:const TextStyle(
+                              fontSize: 19,
+                              fontFamily: 'DancingScript',
+                              color: Colors.teal))),
+                                ]),
                                     ButtonBar(
                                       children: [
                                         OutlinedButton(
-                                          child: const Text('Info'),
+                                          child: const Text('About us'),
                                           onPressed: () {/* ... */},
                                         ),
                                         OutlinedButton(
@@ -114,6 +156,6 @@ class _CompaniesPostState extends State<CompaniesPost> {
                                     )
                                   ],
                                 ));
-                        });
+                        }));
   }
 }

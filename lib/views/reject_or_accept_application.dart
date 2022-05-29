@@ -33,7 +33,7 @@ ModalRoute.of(context)!.settings.arguments as Application;
                                         
                                         Column(children: [
                                           Text(
-                                            application.cgpa,
+                                            "${application.cgpa}",
                                             style: const TextStyle(
                                                 color: Colors.amber,
                                                 fontSize: 20),
@@ -56,7 +56,7 @@ ModalRoute.of(context)!.settings.arguments as Application;
                                       Container(
                                         padding: const EdgeInsets.all(5.0),
                                         alignment: Alignment.centerLeft,
-                                        child: Text(application.cgpa),
+                                        child: Text(application.Subject),
                                       )
                                     ]),
                                     ButtonBar(

@@ -1,5 +1,6 @@
 const express = require('express')
 const {Application,validateApply} = require('../models/application')
+const { Company } = require('../models/company')
 const { User } = require('../models/users')
 const router = express.Router()
 
@@ -35,5 +36,18 @@ router.put('/application/:username', async (req, res)=> {
     }})
     await application.save()
     res.status(200).send(application)
+    })
+
+router.put('/company/:companyname', async (req, res)=> {
+    const company_name = req.params.companyname
+    let company = await Company.findOneAndUpdate({company_name:company_name},{$set:{
+        company_name:req.body.company_name,
+        Company_website:req.body.Company_website,
+        dedicated_field:req.body.dedicated_field,
+        Address:req.body.Address
+        
+    }})
+    await company.save()
+    res.status(200).send(company)
     })
     module.exports=router

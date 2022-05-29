@@ -104,7 +104,7 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                     Container(
                         margin: const EdgeInsets.only(bottom: 20, top: 20),
                         decoration: const BoxDecoration(
-                            color: Colors.teal,
+                            color: Colors.black38,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(100),
                               topLeft: Radius.circular(100),
@@ -122,7 +122,7 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                               fontFamily: 'DancingScript',
                               color: Colors.white),
                         )),
-                    if (isvisible)
+                   
                       Container(
                           alignment: Alignment.centerLeft,
                           padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -156,6 +156,12 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                               color: Colors.red,
                               fontWeight: FontWeight.w700,
                             ),
+                            errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedErrorBorder:  OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -187,6 +193,12 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                                 color: Colors.red,
                                 fontWeight: FontWeight.w700,
                               ),
+                              errorBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedErrorBorder:const  OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ), 
                               prefixIcon: const Icon(
                                 Icons.lock,
                                 color: Colors.white,
@@ -226,9 +238,9 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                                       style: OutlinedButton.styleFrom(
                                         side: const BorderSide(
                                             width: 1, color: Colors.white),
-                                        shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15))),
+                                        // shape: const RoundedRectangleBorder(
+                                        //     borderRadius: BorderRadius.all(
+                                        //         Radius.circular(15))),
                                       ),
                                       child: const Text(
                                         'sign in',
@@ -331,9 +343,9 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                             style: OutlinedButton.styleFrom(
                               side:
                                   const BorderSide(width: 1, color: Colors.white),
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25))),
+                              // shape: const RoundedRectangleBorder(
+                              //     borderRadius:
+                              //         BorderRadius.all(Radius.circular(25))),
                             ),
                             child: const Text(
                               'Login As Company',
@@ -345,14 +357,7 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                               });
                             },
                           )),
-                    if (!isvisible)
-                      Container(
-                          // alignment: Alignment.center,
-                          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                          child: const Text(
-                            'Sign in',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          )),
+                    
                     if (!isvisible)
                       Container(
                         padding: const EdgeInsets.all(20),
@@ -377,6 +382,12 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                               color: Colors.red,
                               fontWeight: FontWeight.w700,
                             ),
+                            errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedErrorBorder:  OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -408,6 +419,12 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                                 color: Colors.red,
                                 fontWeight: FontWeight.w700,
                               ),
+                              errorBorder:const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedErrorBorder:const  OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
                 
                               prefixIcon: const Icon(
                                 Icons.lock,
@@ -437,22 +454,26 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                             },
                           )),
                     if (!isvisible)
-                      Container(
-                          height: 50,
-                          padding: const EdgeInsets.fromLTRB(70, 0, 70, 0),
-                          margin: const EdgeInsets.only(top: 10, bottom: 20),
+                      Align(
+                           alignment: Alignment.centerRight,
+                              child: Container(
+                                  height: 40,
+                                  width: 120,
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 20, 0),
                           child: OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                              side:
-                                  const BorderSide(width: 1, color: Colors.white),
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25))),
-                            ),
-                            child: const Text(
-                              'Sign in',
-                              style: TextStyle(color: Colors.white, fontSize: 20),
-                            ),
+                                      style: OutlinedButton.styleFrom(
+                                        side: const BorderSide(
+                                            width: 1, color: Colors.white),
+                                        // shape: const RoundedRectangleBorder(
+                                        //     borderRadius: BorderRadius.all(
+                                        //         Radius.circular(15))),
+                                      ),
+                                      child: const Text(
+                                        'sign in',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
                             onPressed: () async {
                               final companyPassword = _companPassword.text;
                               final companyName = _companyName.text;
@@ -499,7 +520,7 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                                 }
                               }
                             },
-                          )),
+                          ))),
                     if (!isvisible)
                       Container(
                           margin: const EdgeInsets.only(
@@ -553,9 +574,9 @@ class _LoginviewstatefullState extends State<Loginviewstatefull> {
                             style: OutlinedButton.styleFrom(
                               side:
                                   const BorderSide(width: 1, color: Colors.white),
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25))),
+                              // shape: const RoundedRectangleBorder(
+                              //     borderRadius:
+                              //         BorderRadius.all(Radius.circular(25))),
                             ),
                             child: const Text(
                               'Login As Student',

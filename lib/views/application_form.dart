@@ -108,6 +108,16 @@ ModalRoute.of(context)!.settings.arguments as Post ;
                                       fontSize: 15, color: Colors.white),
                                 ),
                               )),
+                              Container(
+                              margin: const EdgeInsets.fromLTRB(0, 10, 0, 40),
+                              child: const Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "Be serious to fill the real info otherwise you will be disqualified in the further clarification",
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                ),
+                              )),
                           const Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -119,6 +129,7 @@ ModalRoute.of(context)!.settings.arguments as Post ;
                           Container(
                               padding: const EdgeInsets.fromLTRB(0, 0, 20, 20),
                               child: TextFormField(
+                                readOnly: true,
                                 style: const TextStyle(color: Colors.white),
                                 controller: _name,
                                 decoration: InputDecoration(
@@ -167,6 +178,7 @@ ModalRoute.of(context)!.settings.arguments as Post ;
                           Container(
                               padding: const EdgeInsets.fromLTRB(0, 0, 20, 20),
                               child: TextFormField(
+                                readOnly: true,
                                 style: const TextStyle(color: Colors.white),
                                 controller: _address,
                                 decoration: InputDecoration(
@@ -194,13 +206,14 @@ ModalRoute.of(context)!.settings.arguments as Post ;
                                   if (value == null || value.isEmpty) {
                                     return 'please add a Address';
                                   } 
+                                  
                                   return null;
                                 },
                               )),
                               const Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              "cgpa",
+                              "current cgpa",
                               style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.white,
@@ -237,8 +250,27 @@ ModalRoute.of(context)!.settings.arguments as Post ;
                                   if (value == null || value.isEmpty) {
                                     return 'cgpa is required';
                                   } 
+                                  else if (double.tryParse(value)==null) {
+                                    return 'please enter a valid cgpa';
+                                  } 
+                                  else if (double.tryParse(value)!>4 ||double.tryParse(value)!<0 ) {
+                                    return 'please enter a valid cgpa';
+                                  } 
+                                  
+
+                                  
                                   return null;
                                 },
+                              )),
+                              Container(
+                              margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                              child: const Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "in the next field please write a paragraph that tell about your achivement and add links to your cv",
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                ),
                               )),
                               const Align(
                             alignment: Alignment.centerLeft,
@@ -253,9 +285,14 @@ ModalRoute.of(context)!.settings.arguments as Post ;
                           Container(
                               padding: const EdgeInsets.fromLTRB(0, 0, 20, 20),
                               child: TextFormField(
+                                minLines: 1,
+                                maxLines: 5,
+                                keyboardType: TextInputType.multiline,
                                 style: const TextStyle(color: Colors.white),
                                 controller: _description,
                                 decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 10.0),
+
                                   errorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
                                     borderSide:
@@ -300,6 +337,7 @@ ModalRoute.of(context)!.settings.arguments as Post ;
                           Container(
                               padding: const EdgeInsets.fromLTRB(0, 0, 20, 20),
                               child: TextFormField(
+                                readOnly: true,
                                 style: const TextStyle(color: Colors.white),
                                 controller: _department,
                                 decoration: InputDecoration(
