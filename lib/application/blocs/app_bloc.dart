@@ -51,8 +51,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
      on<AppEvaluation>((event, emit) async {
       try {
         final Application app =await appRepository.appEvaluation(event.subject,event.seen);
-       
-        emit(AppgetfromScreenSucccess(app));
+        
       } catch (error) {
         emit(AppOperationFailure(error));
       }

@@ -39,13 +39,13 @@ class _CompaniesPostState extends State<CompaniesPost> {
   }
   @override
   Widget build(BuildContext context) {
-     final prov = PostDataProvider();
-    final postRepo = PostRepository(prov);
-    final postBloc = BlocProvider.of<PostBloc>(context);
-     postBloc.add(const PostLoad());
-     return RepositoryProvider<PostRepository>(
-      create: (context) => postRepo,
-    child:Scaffold(
+    //  final prov = PostDataProvider();
+    // final postRepo = PostRepository(prov);
+    // final postBloc = BlocProvider.of<PostBloc>(context);
+     BlocProvider.of<PostBloc>(context).add(const PostLoad());
+    //  return RepositoryProvider<PostRepository>(
+    //   create: (context) => postRepo,
+    return Scaffold(
         appBar: AppBar(
           title: const Text("Postes"),
           toolbarHeight: 50,
@@ -156,7 +156,7 @@ class _CompaniesPostState extends State<CompaniesPost> {
                                         OutlinedButton(
                                           child: const Text('Apply'),
                                           onPressed: () {
-                                            postBloc.add( PostGetfromScreen(postList.elementAt(index)));
+                                            BlocProvider.of<PostBloc>(context).add( PostGetfromScreen(postList.elementAt(index)));
                            
                           context.go('/ApplicationForm');
                                        
@@ -169,5 +169,5 @@ class _CompaniesPostState extends State<CompaniesPost> {
                         });}
                                   return const CircularProgressIndicator();
 
-                        })));}}
+                        }));}}
 

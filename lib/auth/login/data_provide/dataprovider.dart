@@ -26,6 +26,7 @@ class Loginprovider{
       Map<String, dynamic> data = jsonDecode(response.body);
       final String token = data['token'];
       final User user = User.fromJson(data['user']);
+      
       await TokenStorage.saveUserToken(user.id);
      
       
@@ -35,6 +36,7 @@ class Loginprovider{
     }
     else
     {
+     
       throw Exception("Failed to login");
     }
   }
@@ -56,6 +58,7 @@ class Loginprovider{
       Map<String, dynamic> data = jsonDecode(response.body);
       final String token = data['token'];
       final Company company = Company.fromJson(data['company']);
+     
       await TokenStorage.saveCompanyToken(token);
      
       return company;
@@ -64,6 +67,7 @@ class Loginprovider{
     }
     else
     {
+      
       throw Exception("Failed to login");
     }
   }

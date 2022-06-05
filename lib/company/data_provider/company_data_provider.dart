@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:mynotes/local_cache/local_db.dart';
-import 'package:mynotes/local_cache/local_models/company.dart';
 import 'package:mynotes/models/company.dart';
+
 
 
 class CompanyDataProvider {
@@ -26,8 +26,8 @@ class CompanyDataProvider {
                             );
 
     if (response.statusCode == 200) {
-      final company = LocalCompany.fromApi(jsonDecode(response.body));
-      final createdcompany = await DBProvider.db.createCompany(company);
+      // final company = Company.fromJson(jsonDecode(response.body));
+      // final createdcompany = await DBProvider.db.createCompany(company);
       return Company.fromJson(jsonDecode(response.body));
     }
     {
@@ -36,14 +36,26 @@ class CompanyDataProvider {
   }
 
   Future<Company> fetchBycompanyName(String companyname) async {
+  // final database = await DBProvider.db;
+  //   if (database == null) {
+  //   } else {
+  //     final company = await DBProvider.db.findCompanyById(companyname);
+  //     print(company);
+  //     if (company != null) {
+  //       return company;
+  //     }
+  //   }
+   
     final response =
         await http.get(Uri.parse('http://127.0.0.1:3000/get/company/$companyname'));
 
     if (response.statusCode == 200) {
+      // await DBProvider.db.createCompany(Company.fromJson(jsonDecode(response.body)));
       return Company.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load album');
     }
+  
   }
 
   
@@ -54,8 +66,7 @@ class CompanyDataProvider {
                                     Uri.parse('http://127.0.0.1:3000/put/company/${companyName}'),
                                     headers: <String, String>{
                                       'Content-Type':
-                                          'application/json; charset=UTF-8',
-                                          
+                                          'application/json; charset=UTF-8',    
                                     },
                                     body: jsonEncode(<String, String>{
                                       'company_name': company.companyname,
@@ -66,9 +77,9 @@ class CompanyDataProvider {
                                   );
 
     if (response.statusCode == 200) {
-            final company = LocalCompany.fromApi(jsonDecode(response.body));
-            // catch Store
-      await DBProvider.db.updateCompany(company);
+      // final company = LocalCompany.fromApi(jsonDecode(response.body));
+      //       // catch Store
+      // await DBProvider.db.updateCompany(company);
       return Company.fromJson(jsonDecode(response.body));
     } else {
       throw Exception("Could not update the course");

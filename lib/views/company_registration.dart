@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:mynotes/company/blocs/company_bloc.dart';
 import 'package:mynotes/company/blocs/company_event.dart';
@@ -409,7 +410,7 @@ if (state is CompanyOperationFailure) {
                 
                               if (_formKey.currentState!.validate()) {
                 
-                                                     BlocProvider.of<CompanyBloc>(context).add( CompanyCreate(
+                        BlocProvider.of<CompanyBloc>(context).add( CompanyCreate(
                                   Company(
             companyname : companyname,
             password :password,
@@ -417,47 +418,7 @@ if (state is CompanyOperationFailure) {
             address : address,
             
             dedicatedfield : dedicatedfield) ));
-                              
-                           
-                                // final response = await http.post(
-                                //   Uri.parse('http://127.0.0.1:3000/reg/company'),
-                                //   headers: <String, String>{
-                                //     'Content-Type':
-                                //         'application/json; charset=UTF-8',
-                                        
-                                //   },
-                                //   body: jsonEncode(<String, String>{
-                                //     'password': password,
-                                //     'company_name': companyname,
-                                //     'Company_website': companywebsite,
-                                //     'dedicated_field': dedicatedfield,
-                                //     'Address': address,
-                                //   }),
-                                // );
-                                // if (response.statusCode == 409) {
-                                //   const snackBar = SnackBar(
-                                //       content: Text('Company already registered'),
-                                //       backgroundColor: Colors.red,
-                                //       duration: Duration(milliseconds: 500));
-                                //   ScaffoldMessenger.of(context)
-                                //       .showSnackBar(snackBar);
-                                // } else if (response.statusCode == 400) {
-                                //   const snackBar = SnackBar(
-                                //       content:
-                                //           Text('Please fill the Dedicated Field'),
-                                //       backgroundColor: Colors.red,
-                                //       duration: Duration(milliseconds: 500));
-                                //   ScaffoldMessenger.of(context)
-                                //       .showSnackBar(snackBar);
-                                // } else if (response.statusCode == 200) {
-                                //   Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => const LoginView()),
-                                //   );
-                
-                                //   check = 1;
-                                // }
+                                  
                               }
                             },
                           )),
@@ -488,11 +449,7 @@ if (state is CompanyOperationFailure) {
                               style: TextStyle(color: Colors.white, fontSize: 20),
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginView()),
-                              );
+                              context.go('/');
                             },
                     ))
            ]);})]))));

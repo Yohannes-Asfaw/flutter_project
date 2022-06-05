@@ -25,7 +25,8 @@ class LoginBloc extends Bloc<LoginEvent,LoginState>{
         Company  company = await authrepo.companylogin(event.companyname,event.password);
         emit(CompanyLoginSuccess(company));
       } catch (error) {
-        emit(LoginFilure(error));
+        print(error);
+        emit(CompanyLoginFilure(error));
       }
 
   

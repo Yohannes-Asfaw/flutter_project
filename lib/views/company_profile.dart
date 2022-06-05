@@ -36,7 +36,8 @@ class _CompanyProfileState extends State<CompanyProfile> {
 
   @override
   Widget build(BuildContext context) {
-    
+      final companybloc = BlocProvider.of<CompanyBloc>(context); 
+
        return Scaffold(
           appBar: AppBar(
             title: const Text("Profile"),
@@ -96,14 +97,16 @@ class _CompanyProfileState extends State<CompanyProfile> {
                                     
                               ElevatedButton(
   onPressed: () {
-      // Respond to button press
+
+     context.go('/');
   },
   
   child: Text('logout'),
 ),
                           ElevatedButton(
   onPressed: () {
-      // Respond to button press
+      BlocProvider.of<CompanyBloc>(context).add(CompanyDelete(companybloc.state.company!.id));
+       context.go('/');
   },
   
   child: Text('delete'),

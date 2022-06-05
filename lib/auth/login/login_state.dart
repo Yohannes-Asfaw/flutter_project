@@ -19,6 +19,14 @@ class LoginFilure extends LoginState{
   List<Object> get props => [error];
 
 }
+class CompanyLoginFilure extends LoginState{
+  final Object error;
+  
+  const CompanyLoginFilure(this.error);
+  @override
+  List<Object> get props => [error];
+
+}
 class CompanyLoginSuccess extends LoginState{
   final Company company;
        const CompanyLoginSuccess(this.company);

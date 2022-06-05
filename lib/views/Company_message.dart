@@ -61,7 +61,7 @@ class _CompanymessageState extends State<Companymessage> {
                       
                        
         print(state);
-        if (state is GetByComoanynameFetchSuccess) {
+        if (state is GetByComoanynameFetchSuccess ) {
         final AppList = state.apps;
 
         return GestureDetector(

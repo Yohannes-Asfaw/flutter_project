@@ -31,8 +31,7 @@ class _CompanyNavigationState extends State<CompanyNavigation> {
     const SingleCompaniesPost(),
     const CompanyProfile(),
     const Companymessage(),
-    
-  ];
+    ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

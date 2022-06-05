@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:mynotes/local_cache/local_models/company.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import '../models/company.dart';
 import 'local_models/user.dart';
 
 class DBProvider {
@@ -63,8 +63,8 @@ id TEXT PRIMARY KEY,
     );
   }
 
-  createCompany(LocalCompany localcomp) async {
-    await deleteAll();
+  createCompany(Company localcomp) async {
+    
     
     final db = await database;
     print(db);
@@ -75,8 +75,8 @@ id TEXT PRIMARY KEY,
     return response;
   }
 
-  updateCompany(LocalCompany localcomp) async {
-    await deleteAll();
+  updateCompany(Company localcomp) async {
+    
     final db = await database;
     final response = await db!.update(comTable, localcomp.toJson(),
         where: "id= '${localcomp.id}'");
@@ -113,8 +113,8 @@ id TEXT PRIMARY KEY,
 
   deleteAll() async {
     final db = await database;
-    final response1 = await db!.rawDelete('DELETE FROM $LocalUser');
-    final responsee2 = await db.rawDelete('DELETE FROM $LocalCompany');
+    final response1 = await db!.rawDelete('DELETE FROM $userTable');
+    final responsee2 = await db.rawDelete('DELETE FROM $comTable');
     return response1;
   }
 
@@ -131,7 +131,7 @@ id TEXT PRIMARY KEY,
     }
   }
 
-  Future<LocalCompany?> findCompanyById(String id) async {
+  Future<Company?> findCompanyById(String id) async {
     final db = await database;
      print(db);
     if (db==null){
@@ -140,7 +140,7 @@ id TEXT PRIMARY KEY,
     final companyJson = await db!.query(userTable, where: "id='"+ id + "'");
     print(companyJson);
     if (companyJson.isNotEmpty) {
-      return LocalCompany.fromJson(companyJson.first);
+      return Company.fromJson(companyJson.first);
     } else {
       return null;
     }

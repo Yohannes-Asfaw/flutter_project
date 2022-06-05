@@ -9,6 +9,7 @@ import 'package:mynotes/storage/localstorage.dart';
 import '../application/blocs/app_bloc.dart';
 import '../application/blocs/app_event.dart';
 import '../application/blocs/app_state.dart';
+import '../company/blocs/company_bloc.dart';
 
 class ApplicationEvaluation extends StatefulWidget {
   const ApplicationEvaluation({ Key? key }) : super(key: key);
@@ -20,7 +21,7 @@ class ApplicationEvaluation extends StatefulWidget {
 class _ApplicationEvaluationState extends State<ApplicationEvaluation> {
   @override
   Widget build(BuildContext context) {
- 
+  final companybloc = BlocProvider.of<CompanyBloc>(context); 
    
         
         return Scaffold(
@@ -34,8 +35,19 @@ class _ApplicationEvaluationState extends State<ApplicationEvaluation> {
                      listener: (context, state) {
                       print(state);
                       
-                        //  if(state is AppEvaluationSucccess);
-                             
+                         if(state is AppEvaluationSucccess){
+                                        AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.SUCCES,
+                                  animType: AnimType.TOPSLIDE,
+                                  title: 'Success',
+                                  desc: 'message was sent to applicant',
+                                  btnOkOnPress: () { 
+
+                        context.go('/CompanyNavigation');
+},
+                                ).show();
+                         }
  
 
                      },
@@ -87,17 +99,8 @@ class _ApplicationEvaluationState extends State<ApplicationEvaluation> {
                                             String acc= "Accepted";
                                             String? id = await TokenStorage.getCompany();
                                      BlocProvider.of<AppBloc>(context).add(AppEvaluation(state.app.Subject,acc));
-                                    BlocProvider.of<AppBloc>(context).add(FetchBycompanyName(id!));
 
-                                         AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.SUCCES,
-                                  animType: AnimType.TOPSLIDE,
-                                  title: 'Success',
-                                  desc: 'message was sent to applicant',
-                                  btnOkOnPress: () {                        context.go('/CompanyNavigation');
-},
-                                ).show();
+                          
                                        
                               
                                           },
@@ -110,14 +113,7 @@ class _ApplicationEvaluationState extends State<ApplicationEvaluation> {
                                           onPressed: () async {
                                                   String rej= "Rejected";
                                      BlocProvider.of<AppBloc>(context).add(AppEvaluation(state.app.Subject,rej));
-                                          AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.SUCCES,
-                                  animType: AnimType.TOPSLIDE,
-                                  title: 'Success',
-                                  desc: 'message was sent to applicant',
-                                  btnOkOnPress: () {},
-                                ).show();
+                                 
                               
                              
                                

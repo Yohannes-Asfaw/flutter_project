@@ -17,6 +17,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
         final Company company = await companyRepository.fetchBycompanyName(event.companyName);
         emit(CompanyOperationSuccess(company:company));
       } catch (error) {
+        print(error);
         emit(CompanyOperationFailure(error));
       }
     });
@@ -43,7 +44,7 @@ class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
         emit(CompanyOperationFailure(error));
       }
     });
-
+      
     on<CompanyDelete>((event, emit) async {
       try {
         await companyRepository.delete(event.userName);

@@ -65,7 +65,10 @@ class _SingleCompaniesPostState extends State<SingleCompaniesPost> {
           backgroundColor: Colors.lightBlue.shade600,
           elevation: 10,), 
 
-           body: BlocBuilder<PostBloc, PostState>(
+           body: BlocConsumer<PostBloc, PostState>(
+             listener: (_, state) {
+             
+             },
                        builder: (_, state) {
                       print(state);
              if (state is FetchByCompanynameSuccess){

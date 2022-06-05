@@ -126,7 +126,7 @@ class _CompanyLoginviewstatefullState extends State<CompanyLoginviewstatefull> {
                   child: Column(children: <Widget>[
                     BlocConsumer<LoginBloc, LoginState>(
                        listener: ((context, state) {
-                        if (state is LoginFilure){
+                        if (state is CompanyLoginFilure){
                          AwesomeDialog(
                                     context: context,
                                     dialogType: DialogType.ERROR,
@@ -300,6 +300,7 @@ class _CompanyLoginviewstatefullState extends State<CompanyLoginviewstatefull> {
                             onPressed: () async {
                               final password = _companPassword.text;
                               final companyname =_companyName.text;
+                              print("error");
                               if (_formKey.currentState!.validate()) {
 
                                  BlocProvider.of<LoginBloc>(context).add(CompanyAttemptLogin(companyname,password));

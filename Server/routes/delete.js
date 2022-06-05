@@ -10,9 +10,9 @@ router.delete('/user/:id', async (req, res)=> {
     let user = await User.findByIdAndRemove(id)
     res.status(200).send(user)
     })
-router.delete('/company/:companyname', async (req, res)=> {
-    const companyname = req.params.companyname
-    let company = await User.deleteOne({companyname:companyname})
+router.delete('/company/:id', async (req, res)=> {
+    const id = req.params.id
+    let company = await Company.findByIdAndDelete(id)
     res.status(200).send(company)
     })
     router.delete('/post/:subject', async (req, res)=> {
