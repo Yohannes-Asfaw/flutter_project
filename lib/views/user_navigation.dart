@@ -17,7 +17,7 @@ class _UserNavigationState extends State<UserNavigation> {
     });
   }
   final List<Widget> _children = [
-    const CompaniesPost(),
+     CompaniesPost(),
     const UserMessage(),
     const UserProfile(),
   ];

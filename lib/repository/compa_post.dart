@@ -10,9 +10,9 @@ class PostApi {
     return http.get(Uri.parse('http://127.0.0.1:3000/get/posts'));
   }
   static Future getsinglePosts()async {
-    var token = await TokenStorage.getCompanyToken('company_token');
+    var token = await TokenStorage.getCompanyToken();
     Map<String, dynamic> payload =  Jwt.parseJwt(token.toString());
-    String companyname =  payload.values.toList()[2];
-    return http.get(Uri.parse('http://127.0.0.1:3000/get/posts/$companyname'));
+    String companyid =  payload.values.toList()[0];
+    return http.get(Uri.parse('http://127.0.0.1:3000/get/posts/$companyid'));
   }
 }

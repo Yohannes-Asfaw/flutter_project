@@ -4,18 +4,25 @@ class Post {
   Company company;
   String subject;
   String description;
-
-  Post.fromJson(Map json)
-      : company=Company.fromJson(json['company']),
-        subject=json['subject'],
-        description=json['description'];
+  String id;
 
 
-  Map toJson() {
-    return {
-      'company':company.toJson(),
-      'subject':subject,
-      'description':description 
-    };
+  Post({
+    required this.company,
+    required this.subject,
+    required this.description,
+    this.id="1"
+  });
+
+
+factory Post.fromJson(Map<String, dynamic> json) {
+      return Post(
+          company:Company.fromJson(json['company']),
+        subject:json['subject'],
+        description:json['description'],
+        id:json["_id"]);
+        
   }
+
+
 }

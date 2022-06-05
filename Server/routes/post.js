@@ -7,6 +7,7 @@ const router = express.Router()
 router.post('/',async (req,res)=>{
     const {error} = validatePost(req.body)
     if(error){
+        console.log(error.details[0].message)
         return res.status(400).send(error.details[0].message)
     }
     
@@ -21,7 +22,7 @@ router.post('/',async (req,res)=>{
     
      await post.save()
       const token = post.generateregtoken()
-    res.send('Post success')
+    res.send(post.company)
     
 
 })

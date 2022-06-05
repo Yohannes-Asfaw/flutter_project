@@ -39,6 +39,11 @@ dependencies:
   jwt_decode: ^0.3.1
   awesome_dialog: ^2.1.2
   curved_navigation_bar: ^1.0.3
+  go_router: ^3.1.1
+  equatable: ^2.0.3
+  flutter_bloc: ^8.0.1
+  sqflite: ^2.0.2+1
+  path_provider: ^2.0.10
 
 dev_dependencies:
   flutter_test:

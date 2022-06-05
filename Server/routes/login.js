@@ -20,7 +20,10 @@ router.post('/user',async (req,res)=>{
         return res.status(400).send('invalid username or password')
     }
     const token = user.generateregtoken()
-    res.status(200).send(token)
+    res.status(200).json({
+        "token": token,
+        "user": user,
+    })
 
     function validateUser(user){
     const schema = Joi.object({
@@ -47,7 +50,11 @@ router.post('/company',async (req,res)=>{
         return res.status(400).send('invalid Companyname or password')
     }
     const token = company.generateregtoken()
-    res.status(200).send(token)
+    res.status(200).json({
+        "token": token,
+        "company": company,
+        
+    })
 
     function validateCompany(user){
     const schema = Joi.object({

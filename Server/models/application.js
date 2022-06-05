@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const config = require('config')
 const { join } = require('lodash')
 const {User} = require('../models/users')
+const { required } = require('joi')
 
 
 
@@ -13,7 +14,8 @@ const applyschema = mongoose.Schema({
         ref:"User"
     },
     cgpa:{
-        type:String   
+        type:String ,
+        required:true 
     },
     description:{
         type:String,
@@ -24,15 +26,15 @@ const applyschema = mongoose.Schema({
     Subject:{
         type:String,
         required:true,
-        unique: true
+        
     },
     Seen:{
         type:String,
         default:"none"
     },
-    company_name:{
-        type:String,
-        required:true
+    company:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Company"
     },
 })
 
@@ -50,7 +52,7 @@ function validateApply(application){
         description:Joi.string().required(),
         Subject:Joi.string().required(),
         Seen:Joi.string(),
-        company_name:Joi.string().required()
+        company:Joi.string().required()
 
     })
     return schema.validate(application)

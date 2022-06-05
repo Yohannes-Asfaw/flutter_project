@@ -2,9 +2,18 @@ import 'dart:convert';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decode/jwt_decode.dart';
+import '../application/blocs/app_bloc.dart';
+import '../application/blocs/app_state.dart';
+import '../auth/login/login_bloc.dart';
+import '../auth/login/login_state.dart';
+import '../models/companies_post.dart';
 import '../models/company.dart';
+import '../post/blocs/post_bloc.dart';
+import '../post/blocs/post_event.dart';
+import '../post/blocs/post_state.dart';
 import '../repository/companies_repo.dart';
 import '../storage/localstorage.dart';
 
@@ -24,17 +33,17 @@ class _PostFormState extends State<PostForm> {
   late final TextEditingController _description;
   late final TextEditingController _subject;
   final _formKey = GlobalKey<FormState>();
-  getcompanyid() async{
-    var token = await TokenStorage.getCompanyToken('company_token');
-    Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
-    var id = payload.values.toList()[0];
-    return id;
-  }
+  // getcompanyid() async{
+  //   var token = await TokenStorage.getCompanyToken('company_token');
+  //   Map<String, dynamic> payload = Jwt.parseJwt(token.toString());
+  //   var id = payload.values.toList()[0];
+  //   return id;
+  // }
   @override
   void initState() {
     _description = TextEditingController();
     _subject = TextEditingController();
-    getCompany = CompanyApi.getCompany();
+    // getCompany = CompanyApi.getCompany();
     super.initState();
   }
 
@@ -48,23 +57,24 @@ class _PostFormState extends State<PostForm> {
 
   @override
   Widget build(BuildContext context) {
+      
     return Scaffold(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text("Post"),
           toolbarHeight: 50,
-          backgroundColor: Colors.teal,
+          backgroundColor: Colors.lightBlue.shade500,
           elevation: 10,
         ),
-        body: FutureBuilder<Company>(
-          future: getCompany,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              Company company = snapshot.data as Company;
-              _companyname.text = company.companyname;
-              _companywebsite.text = company.companywebsite;
-              _dedicatedfield.text = company.dedicatedfield;
-              _address.text = company.address;
+         body:  BlocBuilder<LoginBloc, LoginState>(
+                     builder: (_, state) {
+                     
+            if (state is CompanyLoginSuccess) {
+             
+              _companyname.text = state.company.companyname;
+              _companywebsite.text = state.company.companywebsite;
+              _dedicatedfield.text = state.company.dedicatedfield;
+              _address.text = state.company.address;
 
               return Form(
                   key: _formKey,
@@ -79,14 +89,14 @@ class _PostFormState extends State<PostForm> {
                                 child: Text(
                                   "Post Form",
                                   style: TextStyle(
-                                      fontSize: 25, color: Colors.white),
+                                      fontSize: 25, ),
                                 ),
                               )),
                           const Divider(
                               indent: 2.0,
                               endIndent: 2.0,
-                              thickness: 0.5,
-                              color: Colors.white),
+                              thickness: 5,
+                              ),
                           Container(
                               margin: const EdgeInsets.fromLTRB(0, 30, 0, 40),
                               child: const Align(
@@ -94,7 +104,7 @@ class _PostFormState extends State<PostForm> {
                                 child: Text(
                                   "Here as a company you can Post intern information or any othe message that you have for Students",
                                   style: TextStyle(
-                                      fontSize: 15, color: Colors.white),
+                                      fontSize: 15, ),
                                 ),
                               )),
                           const Align(
@@ -102,29 +112,26 @@ class _PostFormState extends State<PostForm> {
                             child: Text(
                               "Subject",
                               style:
-                                  TextStyle(fontSize: 15, color: Colors.white),
+                                  TextStyle(fontSize: 15,),
                             ),
                           ),
                           Container(
                               padding: const EdgeInsets.fromLTRB(0, 0, 20, 20),
                               child: TextFormField(
-                                style: const TextStyle(color: Colors.white),
+                                
                                 controller: _subject,
                                 decoration: InputDecoration(
                                   errorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                    borderSide:
-                                        const BorderSide(color: Colors.white),
+                                  
+                                        
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                    borderSide:
-                                        const BorderSide(color: Colors.white),
+                                  
                                   ),
                                   hintText: "Write subject of post message",
-                                  hintStyle: const TextStyle(color: Colors.white24),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(color: Colors.white),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   focusedBorder: OutlineInputBorder(
@@ -154,26 +161,20 @@ class _PostFormState extends State<PostForm> {
                             ),
                           ),
                           Container(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 20),
                               child: TextFormField(
-                                style: const TextStyle(color: Colors.white),
                                 controller: _description,
                                 decoration: InputDecoration(
                                   errorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                    borderSide:
-                                        const BorderSide(color: Colors.white),
+                                  
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                    borderSide:
-                                        const BorderSide(color: Colors.white),
-                                  ),
+                                                                   ),
                                   hintText: "Write Decription of your post",
-                                  hintStyle: const TextStyle(color: Colors.white24),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                    borderSide: const BorderSide(color: Colors.white),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(color: Colors.black),
@@ -190,57 +191,25 @@ class _PostFormState extends State<PostForm> {
                                   return null;
                                 },
                               )),
+
                           Align(
                               alignment: Alignment.centerRight,
-                              child: Container(
-                                  height: 60,
-                                  width: 100,
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 20, 20, 0),
-                                  child: OutlinedButton(
-                                      style: OutlinedButton.styleFrom(
-                                        side: const BorderSide(
-                                            width: 1, color: Colors.white),
-                                        shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15))),
-                                      ),
-                                      child: const Text(
-                                        'Post',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20),
-                                      ),
-                                      onPressed: () async {
-                                        final subject = _subject.text;
+                              child:                                                            ElevatedButton(
+  onPressed: () {
+                                 final subject = _subject.text;
                                         final description = _description.text;
 
                                         if (_formKey.currentState!.validate()) {
-                                          var id = await getcompanyid();
-                                          final response = await http.post(
-                                            Uri.parse(
-                                                'http://127.0.0.1:3000/post'),
-                                            headers: <String, String>{
-                                              'Content-Type':
-                                                  'application/json; charset=UTF-8',
-                                            },
-                                            body: jsonEncode(<String, String>{
-                                              'company':id,
-                                              'subject': subject,
-                                              'description': description
-                                            }),
-                                          );
-                                          if (response.statusCode == 400) {
-                                            AwesomeDialog(
-                                              context: context,
-                                              dialogType: DialogType.ERROR,
-                                              animType: AnimType.TOPSLIDE,
-                                              title: 'Error',
-                                              desc: "Server Error",
-                                              btnOkOnPress: () {},
-                                            ).show();
-                                          } else if (response.statusCode ==
-                                              200) {
-                                            AwesomeDialog(
+  BlocProvider.of<PostBloc>(context).add(PostCreate(
+    
+   
+    description,
+    state.company.id,
+     subject,
+
+    
+  ));
+    AwesomeDialog(
                                               context: context,
                                               dialogType: DialogType.SUCCES,
                                               animType: AnimType.TOPSLIDE,
@@ -248,14 +217,21 @@ class _PostFormState extends State<PostForm> {
                                               desc: "Post is added",
                                               btnOkOnPress: () {},
                                             ).show();
-                                          }
+
+
+                                         
                                         }
-                                      })))
+      // Respond to button press
+  },
+  
+  child: Text('Post'),
+),)
                         ],
                       )));
-            } else if (snapshot.hasError) {
-              return Text('${snapshot.error}');
             }
+            
+          
+            
 
             return const CircularProgressIndicator();
           },

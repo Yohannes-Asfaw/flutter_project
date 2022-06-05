@@ -39,27 +39,35 @@ class _CompanyNavigationState extends State<CompanyNavigation> {
      body: _children[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.green[100],
+        backgroundColor: Colors.white,
+        elevation: 20,
+      
+             
+        
+        
+        
         onTap: onTabTapped,
         items: const [
           BottomNavigationBarItem(
             //I want to navigate to a new page Store();
             icon: Icon(Icons.auto_awesome_mosaic_outlined),
             label: 'Postes',
+          
           ),
           BottomNavigationBarItem(
             //I want to navigate to a new page Library();
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.account_box),
             label: 'Profile',
           ),
           BottomNavigationBarItem(
             //I want to navigate to a new page Store();
             icon: Icon(Icons.message),
             label: 'Message',
+            
           ),]),
           
       floatingActionButton: FloatingActionButton.extended(
-        elevation: 4.0,
+        elevation: 10.0,
         icon: const Icon(Icons.add),
         label: const Text('Add a Post'),
         onPressed: () {

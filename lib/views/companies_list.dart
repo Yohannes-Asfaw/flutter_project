@@ -17,7 +17,7 @@ class CompanyList extends StatefulWidget {
 
 class _CompanyListState extends State<CompanyList> {
   List<Company> characterList = <Company>[];
-  late Future<User> getUser;
+  late Future<Company> getUser;
 
   void getCompaniesfromApi() async {
     CompanyApi.getCharacters().then((response) {
@@ -31,7 +31,7 @@ class _CompanyListState extends State<CompanyList> {
   @override
   void initState() {
     getCompaniesfromApi();
-    getUser = UserApi.getUser();
+    // getUser = UserApi.getUser();
 
     super.initState();
   }

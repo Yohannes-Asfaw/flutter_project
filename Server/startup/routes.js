@@ -7,7 +7,7 @@ const apply = require('../routes/applyform')
 const post = require('../routes/post')
 const cors = require("cors")
 const update=require('../routes/update')
-
+const delet=require('../routes/delete')
 
 module.exports=function(app){
     app.use(express.json())
@@ -19,4 +19,5 @@ module.exports=function(app){
     app.use('/apply',apply)
     app.use('/post',post)
     app.use(error)
+    app.use('/delete',delet)
 }

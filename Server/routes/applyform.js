@@ -22,12 +22,12 @@ router.post('/',async (req,res)=>{
         description:req.body.description,
         Subject:req.body.Subject,
         Seen:req.body.Seen,
-        company_name:req.body.company_name
+        company:req.body.company
     })
     await apply.save()
     
     // const token = apply.generateregtoken()
-    res.send('applied successfully')
+    res.send(apply.Subject)
     
 
 })

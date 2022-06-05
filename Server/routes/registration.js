@@ -9,6 +9,7 @@ const lodash = require('lodash')
 router.post('/user',async (req,res)=>{
     const {error} = validateUser(req.body)
     if(error){
+        console.log((error.details[0].message))
         return res.status(400).send(error.details[0].message)
     }
     let user = await User.findOne({user_name:req.body.user_name})
@@ -28,7 +29,7 @@ router.post('/user',async (req,res)=>{
     user.password = await bcrypt.hash(user.password,salt)
      await user.save()
       const token = user.generateregtoken()
-    res.header('-x-login-token',token).send(lodash.pick(user,['user_name']))
+    res.send(user)
     
 
 })
@@ -54,7 +55,7 @@ router.post('/company',async (req,res)=>{
     company.password = await bcrypt.hash(company.password,salt)
      await company.save()
       const token = company.generateregtoken()
-    res.header('-x-login-token',token).send(token)
+    res.send(company)
 })
 
 module.exports=router

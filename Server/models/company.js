@@ -5,6 +5,7 @@ const config = require('config')
 
 
 const companyschema = mongoose.Schema({
+    
     company_name:{
         type:String,
         required:true,

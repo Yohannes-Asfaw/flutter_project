@@ -1,7 +1,14 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mynotes/models/applicationform.dart';
 import 'package:http/http.dart' as http;
+import 'package:mynotes/storage/localstorage.dart';
+
+import '../application/blocs/app_bloc.dart';
+import '../application/blocs/app_event.dart';
+import '../application/blocs/app_state.dart';
 
 class ApplicationEvaluation extends StatefulWidget {
   const ApplicationEvaluation({ Key? key }) : super(key: key);
@@ -13,18 +20,31 @@ class ApplicationEvaluation extends StatefulWidget {
 class _ApplicationEvaluationState extends State<ApplicationEvaluation> {
   @override
   Widget build(BuildContext context) {
-        final application = 
-ModalRoute.of(context)!.settings.arguments as Application;
  
-    return MaterialApp(
-        title: "Application_Evaluation",
+   
         
-        home: Scaffold(
+        return Scaffold(
             appBar: AppBar(title: const Text("Application Evaluation"),
              toolbarHeight: 50,
           backgroundColor: Colors.teal,
           elevation: 10,),  
-            body: Card(
+            body:  BlocConsumer<AppBloc, AppState>(
+
+
+                     listener: (context, state) {
+                      print(state);
+                      
+                        //  if(state is AppEvaluationSucccess);
+                             
+ 
+
+                     },
+              builder: (_, state) {
+             
+            
+            
+            if (state is AppgetfromScreenSucccess) {
+              return Card(
                                 margin: const EdgeInsets.only(top: 10),
                                 child: Column(
                                   children: [
@@ -33,12 +53,12 @@ ModalRoute.of(context)!.settings.arguments as Application;
                                         
                                         Column(children: [
                                           Text(
-                                            "${application.cgpa}",
+                                            "${state.app.cgpa}",
                                             style: const TextStyle(
                                                 color: Colors.amber,
                                                 fontSize: 20),
                                           ),
-                                          Text(application.description),
+                                          Text(state.app.description),
                                         ])
                                       ],
                                     ),
@@ -56,7 +76,7 @@ ModalRoute.of(context)!.settings.arguments as Application;
                                       Container(
                                         padding: const EdgeInsets.all(5.0),
                                         alignment: Alignment.centerLeft,
-                                        child: Text(application.Subject),
+                                        child: Text(state.app.Subject),
                                       )
                                     ]),
                                     ButtonBar(
@@ -64,24 +84,22 @@ ModalRoute.of(context)!.settings.arguments as Application;
                                         OutlinedButton(
                                           child: const Text('Accept'),
                                           onPressed: () async { 
-                                final response = await http.put(
-                                Uri.parse('http://127.0.0.1:3000/put/application/${application.Subject}/Accepted'),
-                                headers: <String, String>{
-                                  'Content-Type':
-                                      'application/json; charset=UTF-8',
-                                },
-                                
-                              ); 
-                               if (response.statusCode==200) {
-                                AwesomeDialog(
+                                            String acc= "Accepted";
+                                            String? id = await TokenStorage.getCompany();
+                                     BlocProvider.of<AppBloc>(context).add(AppEvaluation(state.app.Subject,acc));
+                                    BlocProvider.of<AppBloc>(context).add(FetchBycompanyName(id!));
+
+                                         AwesomeDialog(
                                   context: context,
                                   dialogType: DialogType.SUCCES,
                                   animType: AnimType.TOPSLIDE,
                                   title: 'Success',
-                                  desc: 'Acceptance message was sent to applicant',
-                                  btnOkOnPress: () {},
+                                  desc: 'message was sent to applicant',
+                                  btnOkOnPress: () {                        context.go('/CompanyNavigation');
+},
                                 ).show();
-                              }
+                                       
+                              
                                           },
                                           
 
@@ -90,22 +108,17 @@ ModalRoute.of(context)!.settings.arguments as Application;
                                         OutlinedButton(
                                           child: const Text('Reject'),
                                           onPressed: () async {
-                                final response = await http.put(
-                                Uri.parse('http://127.0.0.1:3000/put/application/${application.Subject}/Rejected'),
-                                headers: <String, String>{
-                                  'Content-Type':
-                                      'application/json; charset=UTF-8',
-                                }, );
-                                if (response.statusCode==200) {
-                                AwesomeDialog(
+                                                  String rej= "Rejected";
+                                     BlocProvider.of<AppBloc>(context).add(AppEvaluation(state.app.Subject,rej));
+                                          AwesomeDialog(
                                   context: context,
                                   dialogType: DialogType.SUCCES,
                                   animType: AnimType.TOPSLIDE,
                                   title: 'Success',
-                                  desc: 'Acceptance message was sent to applicant',
+                                  desc: 'message was sent to applicant',
                                   btnOkOnPress: () {},
                                 ).show();
-                              }
+                              
                              
                                
                            
@@ -115,6 +128,10 @@ ModalRoute.of(context)!.settings.arguments as Application;
                                       ],
                                     )
                                   ],
-                                ))));
+                                ));
+            
+            }return Center(child: CircularProgressIndicator(),)   ;   
+                                
+    }));
   }
 }
