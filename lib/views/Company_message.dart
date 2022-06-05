@@ -43,12 +43,8 @@ class _CompanymessageState extends State<Companymessage> {
   @override
   Widget build(BuildContext context) {
     final loginBloc = BlocProvider.of<LoginBloc>(context); 
-
-
-    return MaterialApp(
-        title: "Application_Evaluation",
         
-        home: Scaffold(
+        return Scaffold(
             appBar: AppBar(title: const Text("Message"),
              toolbarHeight: 50,
           backgroundColor: Colors.teal,
@@ -82,12 +78,8 @@ class _CompanymessageState extends State<Companymessage> {
                           padding: const EdgeInsets.all(10),
                           itemCount: AppList.length,
                           itemBuilder: (context, index) {
-                            return  InkWell(
-          onTap: () {
-        BlocProvider.of<AppBloc>(context).add(AppGetfromScreen(AppList.elementAt(index)));
-       context.go('/ApplicationEvaluation');
-          },
-                            child: Card(
+           
+                            return Card(
                               
                                 margin: const EdgeInsets.only(top: 10),
                                 child: Column(
@@ -107,14 +99,26 @@ class _CompanymessageState extends State<Companymessage> {
                                         padding: const EdgeInsets.all(5.0),
                                         alignment: Alignment.centerLeft,
                                         child: Text("From : ${AppList.elementAt(index).user.userName}"),
-                                      )
+                                      ),       ButtonBar(
+                                      children: [
+                                        OutlinedButton(
+                                          child: const Text('Detail'),
+                                          onPressed: () {
+                                              BlocProvider.of<AppBloc>(context).add(AppGetfromScreen(AppList.elementAt(index)));
+       context.go('/ApplicationEvaluation');
+                             
+                                       
+                                          },
+                                        )
+                                      ],
+                                    )
                                     ]),
                                   ],
-                                )));
+                                ));
                           })))
             ]));
   }
   return Center(child: CircularProgressIndicator(),);
-  }))
-  );}
+  }));
+  }
 }

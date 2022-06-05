@@ -21,7 +21,6 @@ class ApplicationEvaluation extends StatefulWidget {
 class _ApplicationEvaluationState extends State<ApplicationEvaluation> {
   @override
   Widget build(BuildContext context) {
-  final companybloc = BlocProvider.of<CompanyBloc>(context); 
    
         
         return Scaffold(
